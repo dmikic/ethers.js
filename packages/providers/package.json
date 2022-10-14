@@ -1,12 +1,4 @@
 {
-  "_ethers.alias": {
-    "browser-net.d.ts": "",
-    "browser-net.d.ts.map": "",
-    "browser-net.js": "",
-    "browser-net.js.map": "",
-    "ipc-provider.js": "browser-ipc-provider.js",
-    "ws.js": "browser-ws.js"
-  },
   "author": "Richard Moore <me@ricmoo.com>",
   "browser": {
     "./lib/ipc-provider": "./lib/browser-ipc-provider.js",
@@ -54,14 +46,14 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/providers",
+  "name": "ethers-lib-op-goerli-support-providers",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/providers",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/dmikic/ethers.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -69,5 +61,13 @@
   "sideEffects": false,
   "tarballHash": "0xcfeb26bef573f86310ea7384b475796769baa01e30e4f46bbff2bd96616f2ccc",
   "types": "./lib/index.d.ts",
-  "version": "5.7.1"
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/dmikic/ethers.js/issues"
+  },
+  "homepage": "https://github.com/dmikic/ethers.js#readme",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {}
 }
