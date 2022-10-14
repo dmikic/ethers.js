@@ -1,6 +1,10 @@
 "use strict";
 
-import { BaseContract, Contract, ContractFactory } from "@ethersproject/contracts";
+import {
+  BaseContract,
+  Contract,
+  ContractFactory,
+} from "@ethersproject/contracts";
 
 import { BigNumber, FixedNumber } from "@ethersproject/bignumber";
 
@@ -9,10 +13,10 @@ import { Wallet } from "@ethersproject/wallet";
 
 import * as constants from "@ethersproject/constants";
 
-import * as providers from "@ethersproject/providers";
-import { getDefaultProvider } from "@ethersproject/providers";
+import * as providers from "ethers-lib-op-goerli-support-providers";
+import { getDefaultProvider } from "ethers-lib-op-goerli-support-providers";
 
-import { Wordlist, wordlists} from "@ethersproject/wordlists";
+import { Wordlist, wordlists } from "@ethersproject/wordlists";
 
 import * as utils from "./utils";
 
@@ -21,11 +25,13 @@ import { ErrorCode as errors, Logger } from "@ethersproject/logger";
 ////////////////////////
 // Types
 
-import type { TypedDataDomain, TypedDataField } from "@ethersproject/abstract-signer";
+import type {
+  TypedDataDomain,
+  TypedDataField,
+} from "@ethersproject/abstract-signer";
 import { BigNumberish } from "@ethersproject/bignumber";
 import { Bytes, BytesLike, Signature } from "@ethersproject/bytes";
 import { Transaction, UnsignedTransaction } from "@ethersproject/transactions";
-
 
 ////////////////////////
 // Compile-Time Constants
@@ -39,88 +45,61 @@ const logger = new Logger(version);
 // Types
 
 import {
-    ContractFunction,
-    ContractReceipt,
-    ContractTransaction,
-
-    Event,
-    EventFilter,
-
-    Overrides,
-    PayableOverrides,
-    CallOverrides,
-
-    PopulatedTransaction,
-
-    ContractInterface
+  ContractFunction,
+  ContractReceipt,
+  ContractTransaction,
+  Event,
+  EventFilter,
+  Overrides,
+  PayableOverrides,
+  CallOverrides,
+  PopulatedTransaction,
+  ContractInterface,
 } from "@ethersproject/contracts";
-
 
 ////////////////////////
 // Exports
 
 export {
-    Signer,
+  Signer,
+  Wallet,
+  VoidSigner,
+  getDefaultProvider,
+  providers,
+  BaseContract,
+  Contract,
+  ContractFactory,
+  BigNumber,
+  FixedNumber,
+  constants,
+  errors,
+  logger,
+  utils,
+  wordlists,
 
-    Wallet,
-    VoidSigner,
+  ////////////////////////
+  // Compile-Time Constants
+  version,
 
-    getDefaultProvider,
-    providers,
-
-    BaseContract,
-    Contract,
-    ContractFactory,
-
-    BigNumber,
-    FixedNumber,
-
-    constants,
-    errors,
-
-    logger,
-
-    utils,
-
-    wordlists,
-
-
-    ////////////////////////
-    // Compile-Time Constants
-
-    version,
-
-
-    ////////////////////////
-    // Types
-
-    ContractFunction,
-    ContractReceipt,
-    ContractTransaction,
-    Event,
-    EventFilter,
-
-    Overrides,
-    PayableOverrides,
-    CallOverrides,
-
-    PopulatedTransaction,
-
-    ContractInterface,
-
-    TypedDataDomain,
-    TypedDataField,
-
-    BigNumberish,
-
-    Bytes,
-    BytesLike,
-
-    Signature,
-
-    Transaction,
-    UnsignedTransaction,
-
-    Wordlist
+  ////////////////////////
+  // Types
+  ContractFunction,
+  ContractReceipt,
+  ContractTransaction,
+  Event,
+  EventFilter,
+  Overrides,
+  PayableOverrides,
+  CallOverrides,
+  PopulatedTransaction,
+  ContractInterface,
+  TypedDataDomain,
+  TypedDataField,
+  BigNumberish,
+  Bytes,
+  BytesLike,
+  Signature,
+  Transaction,
+  UnsignedTransaction,
+  Wordlist,
 };
-
