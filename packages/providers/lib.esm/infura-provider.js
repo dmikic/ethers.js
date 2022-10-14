@@ -13,17 +13,19 @@ export class InfuraWebSocketProvider extends WebSocketProvider {
         const connection = provider.connection;
         if (connection.password) {
             logger.throwError("INFURA WebSocket project secrets unsupported", Logger.errors.UNSUPPORTED_OPERATION, {
-                operation: "InfuraProvider.getWebSocketProvider()"
+                operation: "InfuraProvider.getWebSocketProvider()",
             });
         }
-        const url = connection.url.replace(/^http/i, "ws").replace("/v3/", "/ws/v3/");
+        const url = connection.url
+            .replace(/^http/i, "ws")
+            .replace("/v3/", "/ws/v3/");
         super(url, network);
         defineReadOnly(this, "apiKey", provider.projectId);
         defineReadOnly(this, "projectId", provider.projectId);
         defineReadOnly(this, "projectSecret", provider.projectSecret);
     }
     isCommunityResource() {
-        return (this.projectId === defaultProjectId);
+        return this.projectId === defaultProjectId;
     }
 }
 export class InfuraProvider extends UrlJsonRpcProvider {
@@ -34,17 +36,17 @@ export class InfuraProvider extends UrlJsonRpcProvider {
         const apiKeyObj = {
             apiKey: defaultProjectId,
             projectId: defaultProjectId,
-            projectSecret: null
+            projectSecret: null,
         };
         if (apiKey == null) {
             return apiKeyObj;
         }
-        if (typeof (apiKey) === "string") {
+        if (typeof apiKey === "string") {
             apiKeyObj.projectId = apiKey;
         }
         else if (apiKey.projectSecret != null) {
-            logger.assertArgument((typeof (apiKey.projectId) === "string"), "projectSecret requires a projectId", "projectId", apiKey.projectId);
-            logger.assertArgument((typeof (apiKey.projectSecret) === "string"), "invalid projectSecret", "projectSecret", "[REDACTED]");
+            logger.assertArgument(typeof apiKey.projectId === "string", "projectSecret requires a projectId", "projectId", apiKey.projectId);
+            logger.assertArgument(typeof apiKey.projectSecret === "string", "invalid projectSecret", "projectSecret", "[REDACTED]");
             apiKeyObj.projectId = apiKey.projectId;
             apiKeyObj.projectSecret = apiKey.projectSecret;
         }
@@ -87,6 +89,9 @@ export class InfuraProvider extends UrlJsonRpcProvider {
             case "optimism-kovan":
                 host = "optimism-kovan.infura.io";
                 break;
+            case "optimism-goerli":
+                host = "optimism-goerli.infura.io";
+                break;
             case "arbitrum":
                 host = "arbitrum-mainnet.infura.io";
                 break;
@@ -96,18 +101,18 @@ export class InfuraProvider extends UrlJsonRpcProvider {
             default:
                 logger.throwError("unsupported network", Logger.errors.INVALID_ARGUMENT, {
                     argument: "network",
-                    value: network
+                    value: network,
                 });
         }
         const connection = {
             allowGzip: true,
-            url: ("https:/" + "/" + host + "/v3/" + apiKey.projectId),
+            url: "https:/" + "/" + host + "/v3/" + apiKey.projectId,
             throttleCallback: (attempt, url) => {
                 if (apiKey.projectId === defaultProjectId) {
                     showThrottleMessage();
                 }
                 return Promise.resolve(true);
-            }
+            },
         };
         if (apiKey.projectSecret != null) {
             connection.user = "";
@@ -116,7 +121,7 @@ export class InfuraProvider extends UrlJsonRpcProvider {
         return connection;
     }
     isCommunityResource() {
-        return (this.projectId === defaultProjectId);
+        return this.projectId === defaultProjectId;
     }
 }
 //# sourceMappingURL=infura-provider.js.map

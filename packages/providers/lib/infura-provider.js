@@ -32,10 +32,12 @@ var InfuraWebSocketProvider = /** @class */ (function (_super) {
         var connection = provider.connection;
         if (connection.password) {
             logger.throwError("INFURA WebSocket project secrets unsupported", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
-                operation: "InfuraProvider.getWebSocketProvider()"
+                operation: "InfuraProvider.getWebSocketProvider()",
             });
         }
-        var url = connection.url.replace(/^http/i, "ws").replace("/v3/", "/ws/v3/");
+        var url = connection.url
+            .replace(/^http/i, "ws")
+            .replace("/v3/", "/ws/v3/");
         _this = _super.call(this, url, network) || this;
         (0, properties_1.defineReadOnly)(_this, "apiKey", provider.projectId);
         (0, properties_1.defineReadOnly)(_this, "projectId", provider.projectId);
@@ -43,7 +45,7 @@ var InfuraWebSocketProvider = /** @class */ (function (_super) {
         return _this;
     }
     InfuraWebSocketProvider.prototype.isCommunityResource = function () {
-        return (this.projectId === defaultProjectId);
+        return this.projectId === defaultProjectId;
     };
     return InfuraWebSocketProvider;
 }(websocket_provider_1.WebSocketProvider));
@@ -60,17 +62,17 @@ var InfuraProvider = /** @class */ (function (_super) {
         var apiKeyObj = {
             apiKey: defaultProjectId,
             projectId: defaultProjectId,
-            projectSecret: null
+            projectSecret: null,
         };
         if (apiKey == null) {
             return apiKeyObj;
         }
-        if (typeof (apiKey) === "string") {
+        if (typeof apiKey === "string") {
             apiKeyObj.projectId = apiKey;
         }
         else if (apiKey.projectSecret != null) {
-            logger.assertArgument((typeof (apiKey.projectId) === "string"), "projectSecret requires a projectId", "projectId", apiKey.projectId);
-            logger.assertArgument((typeof (apiKey.projectSecret) === "string"), "invalid projectSecret", "projectSecret", "[REDACTED]");
+            logger.assertArgument(typeof apiKey.projectId === "string", "projectSecret requires a projectId", "projectId", apiKey.projectId);
+            logger.assertArgument(typeof apiKey.projectSecret === "string", "invalid projectSecret", "projectSecret", "[REDACTED]");
             apiKeyObj.projectId = apiKey.projectId;
             apiKeyObj.projectSecret = apiKey.projectSecret;
         }
@@ -113,6 +115,9 @@ var InfuraProvider = /** @class */ (function (_super) {
             case "optimism-kovan":
                 host = "optimism-kovan.infura.io";
                 break;
+            case "optimism-goerli":
+                host = "optimism-goerli.infura.io";
+                break;
             case "arbitrum":
                 host = "arbitrum-mainnet.infura.io";
                 break;
@@ -122,18 +127,18 @@ var InfuraProvider = /** @class */ (function (_super) {
             default:
                 logger.throwError("unsupported network", logger_1.Logger.errors.INVALID_ARGUMENT, {
                     argument: "network",
-                    value: network
+                    value: network,
                 });
         }
         var connection = {
             allowGzip: true,
-            url: ("https:/" + "/" + host + "/v3/" + apiKey.projectId),
+            url: "https:/" + "/" + host + "/v3/" + apiKey.projectId,
             throttleCallback: function (attempt, url) {
                 if (apiKey.projectId === defaultProjectId) {
                     (0, formatter_1.showThrottleMessage)();
                 }
                 return Promise.resolve(true);
-            }
+            },
         };
         if (apiKey.projectSecret != null) {
             connection.user = "";
@@ -142,7 +147,7 @@ var InfuraProvider = /** @class */ (function (_super) {
         return connection;
     };
     InfuraProvider.prototype.isCommunityResource = function () {
-        return (this.projectId === defaultProjectId);
+        return this.projectId === defaultProjectId;
     };
     return InfuraProvider;
 }(url_json_rpc_provider_1.UrlJsonRpcProvider));

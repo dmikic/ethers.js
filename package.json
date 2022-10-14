@@ -1,5 +1,5 @@
 {
-  "name": "ethers",
+  "name": "ethers-op-goerli-support",
   "common": {
     "ethereum": "donations.ethers.eth",
     "funding": [
@@ -13,10 +13,10 @@
       }
     ]
   },
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/dmikic/ethers.js.git"
   },
   "scripts": {
     "preinstall": "npm run bootstrap-hoist",
@@ -100,5 +100,14 @@
     "solc": "0.7.1",
     "tiny-inflate": "1.0.3",
     "ws": "7.4.6"
-  }
+  },
+  "description": "The Ethers Project\r ==================",
+  "bugs": {
+    "url": "https://github.com/ethers-io/ethers.js/issues"
+  },
+  "homepage": "https://github.com/ethers-io/ethers.js#readme",
+  "version": "1.0.0",
+  "main": "karma-esm.conf.js",
+  "author": "ricmoo",
+  "license": "MIT"
 }
